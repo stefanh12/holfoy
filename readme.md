@@ -35,5 +35,23 @@ This custom component integrates **Holfuy weather station data** into Home Assis
 - `sensor.holfuy_wind_speed`
 - `sensor.holfuy_temperature`
 
+## 🌍 Lovelace Dashboard Example
+
+You can visualize wind direction and speed using the https://github.com/custom-cards/compass-card in your Lovelace dashboard.
+
+### Example YAML:
+```yaml
+type: custom:compass-card
+header:
+title:
+ value: Wind
+indicator_sensors:
+- sensor: sensor.holfuy_station_direction
+ indicator:
+   image: arrow_inward
+value_sensors:
+- sensor: sensor.holfuy_station_speed
+- sensor: sensor.holfuy_station_gust
+
 ## Credits
 Developed for Home Assistant using Holfuy API.
