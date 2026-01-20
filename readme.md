@@ -52,6 +52,6 @@ indicator_sensors:
 value_sensors:
 - sensor: sensor.holfuy_station_speed
 - sensor: sensor.holfuy_station_gust
-
+```
 ## Credits
 Developed for Home Assistant using Holfuy API.
