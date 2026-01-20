@@ -37,7 +37,7 @@ This custom component integrates **Holfuy weather station data** into Home Assis
 
 ## 🌍 Lovelace Dashboard Example
 
-You can visualize wind direction and speed using the https://github.com/custom-cards/compass-card in your Lovelace dashboard.
+You can visualize wind direction and speed using the https://github.com/tomvanswam/compass-card/ in your Lovelace dashboard.
 
 ### Example YAML:
 ```yaml
