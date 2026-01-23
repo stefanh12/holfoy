@@ -3,7 +3,7 @@
   "domain": "holfuy",
   "name": "Holfuy Weather",
   "version": "1.0.0",
-  "documentation": "https://github.com/<your-username>/holfuy",
+  "documentation": "https://github.com/stefanh12/holfuy",
   "requirements": [],
   "dependencies": [],
   "codeowners": ["@stefanh12"]
