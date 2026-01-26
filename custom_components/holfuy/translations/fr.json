@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Entrez votre clé API et les IDs de station (jusqu'à 3, séparés par des virgules). Exemple: 601,602",
+        "data": {
+          "api_key": "Clé API",
+          "station_ids": "IDs de station (séparés par des virgules)",
+          "wind_unit": "Unité de vitesse du vent",
+          "temp_unit": "Unité de température"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Les IDs de station doivent être des nombres entiers entre 0 et 65000, jusqu'à 3 valeurs, séparés par des virgules. Les doublons seront supprimés.",
+      "invalid_api_key": "Clé API invalide. Veuillez vérifier votre clé API et réessayer.",
+      "invalid_station_id": "Un ou plusieurs IDs de station sont invalides ou inaccessibles avec cette clé API.",
+      "cannot_connect": "Impossible de se connecter à l'API Holfuy. Veuillez vérifier votre connexion Internet.",
+      "timeout": "La requête vers l'API Holfuy a expiré. Veuillez réessayer.",
+      "unknown": "Une erreur inconnue s'est produite lors de la validation des identifiants API."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Holfuy",
+        "description": "Mettre à jour la clé API, les IDs de station et les unités",
+        "data": {
+          "api_key": "Clé API",
+          "station_ids": "IDs de station (séparés par des virgules)",
+          "wind_unit": "Unité de vitesse du vent",
+          "temp_unit": "Unité de température"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Les IDs de station doivent être des nombres entiers entre 0 et 65000, jusqu'à 3 valeurs, séparés par des virgules. Les doublons seront supprimés.",
+      "invalid_api_key": "Clé API invalide. Veuillez vérifier votre clé API et réessayer.",
+      "invalid_station_id": "Un ou plusieurs IDs de station sont invalides ou inaccessibles avec cette clé API.",
+      "cannot_connect": "Impossible de se connecter à l'API Holfuy. Veuillez vérifier votre connexion Internet.",
+      "timeout": "La requête vers l'API Holfuy a expiré. Veuillez réessayer.",
+      "unknown": "Une erreur inconnue s'est produite lors de la validation des identifiants API."
+    }
+  }
+}

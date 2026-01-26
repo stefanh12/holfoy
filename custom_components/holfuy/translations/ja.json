@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "APIキーとステーションID（最大3つ、カンマ区切り）を入力してください。例：601,602",
+        "data": {
+          "api_key": "APIキー",
+          "station_ids": "ステーションID（カンマ区切り）",
+          "wind_unit": "風速の単位",
+          "temp_unit": "温度の単位"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "ステーションIDは0から65000の整数で、最大3つまで、カンマ区切りで入力してください。重複は削除されます。",
+      "invalid_api_key": "APIキーが無効です。APIキーを確認して、もう一度お試しください。",
+      "invalid_station_id": "1つ以上のステーションIDが無効か、このAPIキーではアクセスできません。",
+      "cannot_connect": "Holfuy APIに接続できません。インターネット接続を確認してください。",
+      "timeout": "Holfuy APIへのリクエストがタイムアウトしました。もう一度お試しください。",
+      "unknown": "API認証情報の検証中に不明なエラーが発生しました。"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Holfuyオプション",
+        "description": "APIキー、ステーションID、単位を更新",
+        "data": {
+          "api_key": "APIキー",
+          "station_ids": "ステーションID（カンマ区切り）",
+          "wind_unit": "風速の単位",
+          "temp_unit": "温度の単位"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "ステーションIDは0から65000の整数で、最大3つまで、カンマ区切りで入力してください。重複は削除されます。",
+      "invalid_api_key": "APIキーが無効です。APIキーを確認して、もう一度お試しください。",
+      "invalid_station_id": "1つ以上のステーションIDが無効か、このAPIキーではアクセスできません。",
+      "cannot_connect": "Holfuy APIに接続できません。インターネット接続を確認してください。",
+      "timeout": "Holfuy APIへのリクエストがタイムアウトしました。もう一度お試しください。",
+      "unknown": "API認証情報の検証中に不明なエラーが発生しました。"
+    }
+  }
+}

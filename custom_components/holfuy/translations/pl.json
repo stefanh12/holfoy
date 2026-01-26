@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Wprowadź swój klucz API i ID stacji (do 3, oddzielone przecinkami). Przykład: 601,602",
+        "data": {
+          "api_key": "Klucz API",
+          "station_ids": "ID stacji (oddzielone przecinkami)",
+          "wind_unit": "Jednostka prędkości wiatru",
+          "temp_unit": "Jednostka temperatury"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "ID stacji muszą być liczbami całkowitymi między 0 a 65000, do 3 wartości, oddzielone przecinkami. Duplikaty zostaną usunięte.",
+      "invalid_api_key": "Nieprawidłowy klucz API. Proszę sprawdzić swój klucz API i spróbować ponownie.",
+      "invalid_station_id": "Jeden lub więcej ID stacji jest nieprawidłowych lub niedostępnych z tym kluczem API.",
+      "cannot_connect": "Nie można połączyć się z API Holfuy. Proszę sprawdzić połączenie internetowe.",
+      "timeout": "Żądanie do API Holfuy przekroczyło limit czasu. Proszę spróbować ponownie.",
+      "unknown": "Wystąpił nieznany błąd podczas walidacji danych API."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opcje Holfuy",
+        "description": "Aktualizuj klucz API, ID stacji i jednostki",
+        "data": {
+          "api_key": "Klucz API",
+          "station_ids": "ID stacji (oddzielone przecinkami)",
+          "wind_unit": "Jednostka prędkości wiatru",
+          "temp_unit": "Jednostka temperatury"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "ID stacji muszą być liczbami całkowitymi między 0 a 65000, do 3 wartości, oddzielone przecinkami. Duplikaty zostaną usunięte.",
+      "invalid_api_key": "Nieprawidłowy klucz API. Proszę sprawdzić swój klucz API i spróbować ponownie.",
+      "invalid_station_id": "Jeden lub więcej ID stacji jest nieprawidłowych lub niedostępnych z tym kluczem API.",
+      "cannot_connect": "Nie można połączyć się z API Holfuy. Proszę sprawdzić połączenie internetowe.",
+      "timeout": "Żądanie do API Holfuy przekroczyło limit czasu. Proszę spróbować ponownie.",
+      "unknown": "Wystąpił nieznany błąd podczas walidacji danych API."
+    }
+  }
+}

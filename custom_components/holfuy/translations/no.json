@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Skriv inn din API-nøkkel og stasjons-IDer (opptil 3, kommaseparert). Eksempel: 601,602",
+        "data": {
+          "api_key": "API-nøkkel",
+          "station_ids": "Stasjons-IDer (kommaseparert)",
+          "wind_unit": "Vindhastighet enhet",
+          "temp_unit": "Temperatur enhet"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Stasjons-IDer må være heltall mellom 0 og 65000, opptil 3 verdier, kommaseparert. Duplikater vil bli fjernet.",
+      "invalid_api_key": "Ugyldig API-nøkkel. Vennligst sjekk API-nøkkelen din og prøv igjen.",
+      "invalid_station_id": "En eller flere stasjons-IDer er ugyldige eller ikke tilgjengelige med denne API-nøkkelen.",
+      "cannot_connect": "Kan ikke koble til Holfuy API. Vennligst sjekk internettforbindelsen din.",
+      "timeout": "Forespørselen til Holfuy API tok for lang tid. Vennligst prøv igjen.",
+      "unknown": "Ukjent feil oppstod ved validering av API-legitimasjon."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Holfuy Innstillinger",
+        "description": "Oppdater API-nøkkel, stasjons-IDer og enheter",
+        "data": {
+          "api_key": "API-nøkkel",
+          "station_ids": "Stasjons-IDer (kommaseparert)",
+          "wind_unit": "Vindhastighet enhet",
+          "temp_unit": "Temperatur enhet"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Stasjons-IDer må være heltall mellom 0 og 65000, opptil 3 verdier, kommaseparert. Duplikater vil bli fjernet.",
+      "invalid_api_key": "Ugyldig API-nøkkel. Vennligst sjekk API-nøkkelen din og prøv igjen.",
+      "invalid_station_id": "En eller flere stasjons-IDer er ugyldige eller ikke tilgjengelige med denne API-nøkkelen.",
+      "cannot_connect": "Kan ikke koble til Holfuy API. Vennligst sjekk internettforbindelsen din.",
+      "timeout": "Forespørselen til Holfuy API tok for lang tid. Vennligst prøv igjen.",
+      "unknown": "Ukjent feil oppstod ved validering av API-legitimasjon."
+    }
+  }
+}

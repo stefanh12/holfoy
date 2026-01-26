@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Voer uw API-sleutel en station-ID's in (maximaal 3, kommagescheiden). Voorbeeld: 601,602",
+        "data": {
+          "api_key": "API-sleutel",
+          "station_ids": "Station-ID's (kommagescheiden)",
+          "wind_unit": "Windsnelheid eenheid",
+          "temp_unit": "Temperatuur eenheid"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Station-ID's moeten gehele getallen zijn tussen 0 en 65000, maximaal 3 waarden, kommagescheiden. Duplicaten worden verwijderd.",
+      "invalid_api_key": "Ongeldige API-sleutel. Controleer uw API-sleutel en probeer het opnieuw.",
+      "invalid_station_id": "Een of meer station-ID's zijn ongeldig of niet toegankelijk met deze API-sleutel.",
+      "cannot_connect": "Kan geen verbinding maken met Holfuy API. Controleer uw internetverbinding.",
+      "timeout": "Verzoek aan Holfuy API is verlopen. Probeer het opnieuw.",
+      "unknown": "Onbekende fout opgetreden bij het valideren van API-gegevens."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Holfuy Opties",
+        "description": "API-sleutel, station-ID's en eenheden bijwerken",
+        "data": {
+          "api_key": "API-sleutel",
+          "station_ids": "Station-ID's (kommagescheiden)",
+          "wind_unit": "Windsnelheid eenheid",
+          "temp_unit": "Temperatuur eenheid"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Station-ID's moeten gehele getallen zijn tussen 0 en 65000, maximaal 3 waarden, kommagescheiden. Duplicaten worden verwijderd.",
+      "invalid_api_key": "Ongeldige API-sleutel. Controleer uw API-sleutel en probeer het opnieuw.",
+      "invalid_station_id": "Een of meer station-ID's zijn ongeldig of niet toegankelijk met deze API-sleutel.",
+      "cannot_connect": "Kan geen verbinding maken met Holfuy API. Controleer uw internetverbinding.",
+      "timeout": "Verzoek aan Holfuy API is verlopen. Probeer het opnieuw.",
+      "unknown": "Onbekende fout opgetreden bij het valideren van API-gegevens."
+    }
+  }
+}

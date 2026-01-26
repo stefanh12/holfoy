@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Insira sua chave API e IDs de estação (até 3, separados por vírgula). Exemplo: 601,602",
+        "data": {
+          "api_key": "Chave API",
+          "station_ids": "IDs de estação (separados por vírgula)",
+          "wind_unit": "Unidade de velocidade do vento",
+          "temp_unit": "Unidade de temperatura"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "IDs de estação devem ser números inteiros entre 0 e 65000, até 3 valores, separados por vírgula. Duplicatas serão removidas.",
+      "invalid_api_key": "Chave API inválida. Verifique sua chave API e tente novamente.",
+      "invalid_station_id": "Um ou mais IDs de estação são inválidos ou não estão acessíveis com esta chave API.",
+      "cannot_connect": "Não foi possível conectar à API Holfuy. Verifique sua conexão com a internet.",
+      "timeout": "A solicitação à API Holfuy expirou. Tente novamente.",
+      "unknown": "Erro desconhecido ocorreu ao validar as credenciais da API."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opções Holfuy",
+        "description": "Atualizar chave API, IDs de estação e unidades",
+        "data": {
+          "api_key": "Chave API",
+          "station_ids": "IDs de estação (separados por vírgula)",
+          "wind_unit": "Unidade de velocidade do vento",
+          "temp_unit": "Unidade de temperatura"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "IDs de estação devem ser números inteiros entre 0 e 65000, até 3 valores, separados por vírgula. Duplicatas serão removidas.",
+      "invalid_api_key": "Chave API inválida. Verifique sua chave API e tente novamente.",
+      "invalid_station_id": "Um ou mais IDs de estação são inválidos ou não estão acessíveis com esta chave API.",
+      "cannot_connect": "Não foi possível conectar à API Holfuy. Verifique sua conexão com a internet.",
+      "timeout": "A solicitação à API Holfuy expirou. Tente novamente.",
+      "unknown": "Erro desconhecido ocorreu ao validar as credenciais da API."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Geben Sie Ihren API-Schlüssel und Stations-IDs ein (bis zu 3, durch Kommas getrennt). Beispiel: 601,602",
+        "data": {
+          "api_key": "API-Schlüssel",
+          "station_ids": "Stations-IDs (durch Kommas getrennt)",
+          "wind_unit": "Windgeschwindigkeit Einheit",
+          "temp_unit": "Temperatur Einheit"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Stations-IDs müssen ganze Zahlen zwischen 0 und 65000 sein, bis zu 3 Werte, durch Kommas getrennt. Duplikate werden entfernt.",
+      "invalid_api_key": "Ungültiger API-Schlüssel. Bitte überprüfen Sie Ihren API-Schlüssel und versuchen Sie es erneut.",
+      "invalid_station_id": "Eine oder mehrere Stations-IDs sind ungültig oder mit diesem API-Schlüssel nicht zugänglich.",
+      "cannot_connect": "Verbindung zur Holfuy API nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung.",
+      "timeout": "Anfrage an Holfuy API wurde abgebrochen. Bitte versuchen Sie es erneut.",
+      "unknown": "Unbekannter Fehler bei der Validierung der API-Anmeldedaten."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Holfuy Optionen",
+        "description": "API-Schlüssel, Stations-IDs und Einheiten aktualisieren",
+        "data": {
+          "api_key": "API-Schlüssel",
+          "station_ids": "Stations-IDs (durch Kommas getrennt)",
+          "wind_unit": "Windgeschwindigkeit Einheit",
+          "temp_unit": "Temperatur Einheit"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Stations-IDs müssen ganze Zahlen zwischen 0 und 65000 sein, bis zu 3 Werte, durch Kommas getrennt. Duplikate werden entfernt.",
+      "invalid_api_key": "Ungültiger API-Schlüssel. Bitte überprüfen Sie Ihren API-Schlüssel und versuchen Sie es erneut.",
+      "invalid_station_id": "Eine oder mehrere Stations-IDs sind ungültig oder mit diesem API-Schlüssel nicht zugänglich.",
+      "cannot_connect": "Verbindung zur Holfuy API nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung.",
+      "timeout": "Anfrage an Holfuy API wurde abgebrochen. Bitte versuchen Sie es erneut.",
+      "unknown": "Unbekannter Fehler bei der Validierung der API-Anmeldedaten."
+    }
+  }
+}

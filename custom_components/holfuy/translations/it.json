@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Inserisci la tua chiave API e gli ID delle stazioni (fino a 3, separati da virgola). Esempio: 601,602",
+        "data": {
+          "api_key": "Chiave API",
+          "station_ids": "ID stazioni (separati da virgola)",
+          "wind_unit": "Unità velocità del vento",
+          "temp_unit": "Unità temperatura"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Gli ID delle stazioni devono essere numeri interi tra 0 e 65000, fino a 3 valori, separati da virgola. I duplicati verranno rimossi.",
+      "invalid_api_key": "Chiave API non valida. Controlla la tua chiave API e riprova.",
+      "invalid_station_id": "Uno o più ID stazione non sono validi o non sono accessibili con questa chiave API.",
+      "cannot_connect": "Impossibile connettersi all'API Holfuy. Controlla la tua connessione Internet.",
+      "timeout": "La richiesta all'API Holfuy è scaduta. Riprova.",
+      "unknown": "Si è verificato un errore sconosciuto durante la convalida delle credenziali API."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni Holfuy",
+        "description": "Aggiorna chiave API, ID stazioni e unità",
+        "data": {
+          "api_key": "Chiave API",
+          "station_ids": "ID stazioni (separati da virgola)",
+          "wind_unit": "Unità velocità del vento",
+          "temp_unit": "Unità temperatura"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Gli ID delle stazioni devono essere numeri interi tra 0 e 65000, fino a 3 valori, separati da virgola. I duplicati verranno rimossi.",
+      "invalid_api_key": "Chiave API non valida. Controlla la tua chiave API e riprova.",
+      "invalid_station_id": "Uno o più ID stazione non sono validi o non sono accessibili con questa chiave API.",
+      "cannot_connect": "Impossibile connettersi all'API Holfuy. Controlla la tua connessione Internet.",
+      "timeout": "La richiesta all'API Holfuy è scaduta. Riprova.",
+      "unknown": "Si è verificato un errore sconosciuto durante la convalida delle credenziali API."
+    }
+  }
+}

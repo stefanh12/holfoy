@@ -1,0 +1,46 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Holfuy",
+        "description": "Syötä API-avaimesi ja asema-ID:t (enintään 3, pilkulla erotettuna). Esimerkki: 601,602",
+        "data": {
+          "api_key": "API-avain",
+          "station_ids": "Asema-ID:t (pilkulla erotettuna)",
+          "wind_unit": "Tuulen nopeus yksikkö",
+          "temp_unit": "Lämpötila yksikkö"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Asema-ID:iden on oltava kokonaislukuja välillä 0-65000, enintään 3 arvoa, pilkulla erotettuna. Kaksoiskappaleet poistetaan.",
+      "invalid_api_key": "Virheellinen API-avain. Tarkista API-avaimesi ja yritä uudelleen.",
+      "invalid_station_id": "Yksi tai useampi asema-ID on virheellinen tai ei ole käytettävissä tällä API-avaimella.",
+      "cannot_connect": "Ei voida yhdistää Holfuy API:in. Tarkista internet-yhteytesi.",
+      "timeout": "Pyyntö Holfuy API:lle aikakatkaistiin. Yritä uudelleen.",
+      "unknown": "Tuntematon virhe tapahtui API-tunnistetietojen vahvistamisessa."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Holfuy Asetukset",
+        "description": "Päivitä API-avain, asema-ID:t ja yksiköt",
+        "data": {
+          "api_key": "API-avain",
+          "station_ids": "Asema-ID:t (pilkulla erotettuna)",
+          "wind_unit": "Tuulen nopeus yksikkö",
+          "temp_unit": "Lämpötila yksikkö"
+        }
+      }
+    },
+    "error": {
+      "invalid_station_ids": "Asema-ID:iden on oltava kokonaislukuja välillä 0-65000, enintään 3 arvoa, pilkulla erotettuna. Kaksoiskappaleet poistetaan.",
+      "invalid_api_key": "Virheellinen API-avain. Tarkista API-avaimesi ja yritä uudelleen.",
+      "invalid_station_id": "Yksi tai useampi asema-ID on virheellinen tai ei ole käytettävissä tällä API-avaimella.",
+      "cannot_connect": "Ei voida yhdistää Holfuy API:in. Tarkista internet-yhteytesi.",
+      "timeout": "Pyyntö Holfuy API:lle aikakatkaistiin. Yritä uudelleen.",
+      "unknown": "Tuntematon virhe tapahtui API-tunnistetietojen vahvistamisessa."
+    }
+  }
+}
