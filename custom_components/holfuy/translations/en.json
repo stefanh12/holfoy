@@ -18,6 +18,7 @@
       "invalid_station_id": "One or more station IDs are invalid or not accessible with this API key.",
       "cannot_connect": "Cannot connect to Holfuy API. Please check your internet connection.",
       "timeout": "Request to Holfuy API timed out. Please try again.",
+      "invalid_response": "API returned invalid or malformed data. Please try again later.",
       "unknown": "Unknown error occurred while validating API credentials."
     }
   },
@@ -40,6 +41,7 @@
       "invalid_station_id": "One or more station IDs are invalid or not accessible with this API key.",
       "cannot_connect": "Cannot connect to Holfuy API. Please check your internet connection.",
       "timeout": "Request to Holfuy API timed out. Please try again.",
+      "invalid_response": "API returned invalid or malformed data. Please try again later.",
       "unknown": "Unknown error occurred while validating API credentials."
     }
   }

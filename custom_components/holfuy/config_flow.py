@@ -46,7 +46,10 @@ async def _validate_api_key_and_stations(api_key: str, stations: list[str], tu: 
                         if resp.status != 200:
                             return {"valid": False, "error": "cannot_connect"}
 
-                        data = await resp.json()
+                        try:
+                            data = await resp.json()
+                        except (aiohttp.ContentTypeError, ValueError):
+                            return {"valid": False, "error": "invalid_response"}
 
                         # Check if the response indicates an error
                         if isinstance(data, dict):
@@ -62,7 +65,10 @@ async def _validate_api_key_and_stations(api_key: str, stations: list[str], tu: 
                 return {"valid": False, "error": "cannot_connect"}
             except asyncio.TimeoutError:
                 return {"valid": False, "error": "timeout"}
-            except Exception:
+            except ValueError:
+                return {"valid": False, "error": "invalid_response"}
+            except Exception as err:
+                _LOGGER.exception("Unexpected error during validation: %s", err)
                 return {"valid": False, "error": "unknown"}
 
     return {"valid": True}

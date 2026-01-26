@@ -28,9 +28,20 @@ MIN_UPDATE_INTERVAL = timedelta(minutes=1)
 
 
 async def _fetch_json(session: aiohttp.ClientSession, url: str):
-    async with async_timeout.timeout(10):
-        async with session.get(url) as resp:
-            return await resp.json()
+    """Fetch JSON from URL with error handling."""
+    try:
+        async with async_timeout.timeout(10):
+            async with session.get(url) as resp:
+                resp.raise_for_status()  # Raise exception for HTTP errors
+                return await resp.json()
+    except aiohttp.ContentTypeError as err:
+        raise UpdateFailed(f"Invalid JSON response: {err}")
+    except aiohttp.ClientResponseError as err:
+        raise UpdateFailed(f"HTTP error {err.status}: {err.message}")
+    except asyncio.TimeoutError:
+        raise UpdateFailed("Request timeout")
+    except Exception as err:
+        raise UpdateFailed(f"Request failed: {err}")
 
 
 def _build_url(api_key: str, stations: list[str], tu: str, su: str, station=None):

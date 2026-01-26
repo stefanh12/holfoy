@@ -116,32 +116,68 @@ class HolfuySensor(CoordinatorEntity, SensorEntity):
     @property
     def native_value(self):
         """Return the state of the sensor."""
-        data_map = self.coordinator.data or {}
-        station_data = data_map.get(self._station_id)
-        if not station_data:
+        if not self.coordinator.data:
             return None
-        wind = station_data.get("wind", {}) if isinstance(station_data, dict) else {}
-        if self._key == "wind_speed":
-            return wind.get("speed")
-        elif self._key == "wind_gust":
-            return wind.get("gust")
-        elif self._key == "wind_min":
-            return wind.get("min")
-        elif self._key == "wind_direction":
-            return wind.get("direction")
-        elif self._key == "temperature":
-            return station_data.get("temperature")
+
+        data_map = self.coordinator.data
+        if not isinstance(data_map, dict):
+            return None
+
+        station_data = data_map.get(self._station_id)
+        if not station_data or not isinstance(station_data, dict):
+            return None
+
+        try:
+            if self._key in ("wind_speed", "wind_gust", "wind_min", "wind_direction"):
+                wind = station_data.get("wind")
+                if not wind or not isinstance(wind, dict):
+                    return None
+
+                if self._key == "wind_speed":
+                    value = wind.get("speed")
+                elif self._key == "wind_gust":
+                    value = wind.get("gust")
+                elif self._key == "wind_min":
+                    value = wind.get("min")
+                elif self._key == "wind_direction":
+                    value = wind.get("direction")
+                else:
+                    return None
+
+                # Validate numeric value
+                if value is not None and not isinstance(value, (int, float)):
+                    return None
+                return value
+
+            elif self._key == "temperature":
+                value = station_data.get("temperature")
+                # Validate numeric value
+                if value is not None and not isinstance(value, (int, float)):
+                    return None
+                return value
+
+        except (KeyError, TypeError, AttributeError):
+            return None
+
         return None
 
     @property
     def extra_state_attributes(self):
         """Return additional state attributes."""
-        data_map = self.coordinator.data or {}
-        station_data = data_map.get(self._station_id, {})
-        return {
-            "station_name": station_data.get("stationName"),
-            "last_update": station_data.get("dateTime"),
-        }
+        try:
+            if not self.coordinator.data or not isinstance(self.coordinator.data, dict):
+                return {}
+
+            station_data = self.coordinator.data.get(self._station_id)
+            if not station_data or not isinstance(station_data, dict):
+                return {}
+
+            return {
+                "station_name": station_data.get("stationName"),
+                "last_update": station_data.get("dateTime"),
+            }
+        except (KeyError, TypeError, AttributeError):
+            return {}
 
     @property
     def device_info(self):
