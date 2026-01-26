@@ -3,6 +3,7 @@
 
 This custom component integrates **Holfuy weather station data** into Home Assistant using the Holfuy API.
 Instructions on how to obtain an API key kan be found here, https://api.holfuy.com/
+When adding stations you can add up to 3 stations at a time that is associated with the API key. This reduces the polling to the API.
 
 **To use the integration you need an API key from Holfuy!** You need to contact Holfuy to obtain the key and the key is valid for up to 3 stations.
 
@@ -29,10 +30,11 @@ Instructions on how to obtain an API key kan be found here, https://api.holfuy.c
 2. Restart Home Assistant.
 
 ## Configuration
+You can add up to 3 stations in a comma seperated list
 1. Go to **Settings → Devices & Services → Add Integration → Holfuy**.
 2. Enter:
    - **API Key** (from Holfuy)
-   - **Station ID** (e.g., `601`)
+   - **Station ID'S** (e.g., `601, 1435`)
 
 ## Example Sensors
 - `sensor.holfuy_wind_speed`
