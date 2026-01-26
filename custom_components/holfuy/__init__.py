@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 import aiohttp
 import async_timeout
 
@@ -20,6 +20,11 @@ from .const import (
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+# Update intervals
+DEFAULT_UPDATE_INTERVAL = timedelta(minutes=2)
+MAX_UPDATE_INTERVAL = timedelta(minutes=10)
+MIN_UPDATE_INTERVAL = timedelta(minutes=1)
 
 
 async def _fetch_json(session: aiohttp.ClientSession, url: str):
@@ -91,37 +96,83 @@ def _parse_combined_response(response, stations: list[str]) -> dict | None:
     return None
 
 
-def _make_update_method(api_key: str, stations: list[str], tu: str, su: str):
+def _make_update_method(api_key: str, stations: list[str], tu: str, su: str, coordinator):
+    """Create the update method with error tracking for throttling."""
+    consecutive_errors = 0
+
     async def async_update_data():
-        # Try one combined request first
-        async with aiohttp.ClientSession() as session:
-            combined_url = _build_url(api_key, stations, tu, su, station=None)
-            try:
-                response = await _fetch_json(session, combined_url)
-            except Exception as err:
-                _LOGGER.debug("Combined request failed: %s", err)
-                response = None
+        nonlocal consecutive_errors
 
-            parsed = _parse_combined_response(response, stations)
-            if parsed is not None:
-                # Successful combined response parsed into mapping station -> data
-                return parsed
+        try:
+            # Try one combined request first
+            async with aiohttp.ClientSession() as session:
+                combined_url = _build_url(api_key, stations, tu, su, station=None)
+                try:
+                    response = await _fetch_json(session, combined_url)
+                except Exception as err:
+                    _LOGGER.debug("Combined request failed: %s", err)
+                    response = None
 
-            # Fallback: if combined response couldn't be broken down, issue parallel requests per station
-            tasks = []
-            for station in stations:
-                url = _build_url(api_key, stations, tu, su, station=station)
-                tasks.append(_fetch_json(session, url))
-            results = await asyncio.gather(*tasks, return_exceptions=True)
+                parsed = _parse_combined_response(response, stations)
+                if parsed is not None:
+                    # Successful combined response parsed into mapping station -> data
+                    consecutive_errors = 0
+                    # Restore normal update interval on success
+                    if coordinator.update_interval != DEFAULT_UPDATE_INTERVAL:
+                        coordinator.update_interval = DEFAULT_UPDATE_INTERVAL
+                        _LOGGER.info("API calls successful, restored normal update interval")
+                    return parsed
 
-            # Map results to station ids
-            mapping = {}
-            for station, res in zip(stations, results):
-                if isinstance(res, Exception):
-                    _LOGGER.warning("Error fetching data for station %s: %s", station, res)
-                    continue
-                mapping[str(station)] = res
-            return mapping
+                # Fallback: if combined response couldn't be broken down, issue parallel requests per station
+                tasks = []
+                for station in stations:
+                    url = _build_url(api_key, stations, tu, su, station=station)
+                    tasks.append(_fetch_json(session, url))
+                results = await asyncio.gather(*tasks, return_exceptions=True)
+
+                # Map results to station ids
+                mapping = {}
+                has_errors = False
+                for station, res in zip(stations, results):
+                    if isinstance(res, Exception):
+                        _LOGGER.warning("Error fetching data for station %s: %s", station, res)
+                        has_errors = True
+                        continue
+                    mapping[str(station)] = res
+
+                # If we got at least some data, reset error counter
+    coordinator = DataUpdateCoordinator(
+        hass,
+        _LOGGER,
+        name=f"Holfuy Weather ({entry.entry_id})",
+        update_method=lambda: None,  # Placeholder, will be set below
+        update_interval=DEFAULT_UPDATE_INTERVAL,
+    )
+
+    # Set the actual update method with coordinator reference for throttling
+    coordinator.update_method = _make_update_method(api_key, stations, tu, su, coordinator            if has_errors:
+                    raise UpdateFailed("All station requests failed")
+
+                return mapping
+
+        except Exception as err:
+            consecutive_errors += 1
+
+            # Implement exponential backoff
+            if consecutive_errors > 1:
+                new_interval = min(
+                    DEFAULT_UPDATE_INTERVAL * (2 ** (consecutive_errors - 1)),
+                    MAX_UPDATE_INTERVAL
+                )
+                if coordinator.update_interval != new_interval:
+                    coordinator.update_interval = new_interval
+                    _LOGGER.warning(
+                        "API errors detected (%d consecutive), throttling updates to %s",
+                        consecutive_errors,
+                        new_interval
+                    )
+
+            raise UpdateFailed(f"Error fetching Holfuy data: {err}")
 
     return async_update_data
 

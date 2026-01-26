@@ -34,6 +34,11 @@ This integration:
 - Handles various API response formats (dict, list, combined or individual station data)
 - Station IDs are validated (0-65000 range) and duplicates are automatically removed
 - **API key and station validation** - During setup, the integration tests each station ID with your API key to ensure they are valid and accessible
+- **Automatic API throttling** - Implements exponential backoff when API errors occur:
+  - Normal operation: Updates every 2 minutes
+  - On consecutive errors: Automatically increases interval (4min → 8min → max 10min)
+  - On recovery: Immediately restores normal 2-minute interval
+  - Protects both the API and your Home Assistant from excessive requests during outages
 - Configuration is stored in Home Assistant config entries and can be modified via Options Flow
 
 ## Features
@@ -46,6 +51,10 @@ This integration:
   - Temperature
 - Includes station name and last update timestamp as attributes
 - Uses **DataUpdateCoordinator** for efficient updates
+- **Intelligent error handling**:
+  - Automatic API throttling with exponential backoff on errors
+  - Self-recovery when API becomes available again
+  - Prevents excessive API calls during outages
 - Configurable units for wind speed and temperature
 - **Real-time validation** during setup:
   - API key verification
