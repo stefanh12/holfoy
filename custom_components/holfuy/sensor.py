@@ -1,6 +1,13 @@
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
-from .const import DOMAIN, CONF_WIND_UNIT, CONF_TEMP_UNIT, DEFAULT_WIND_UNIT, DEFAULT_TEMP_UNIT, CONF_STATION_ID
+from .const import (
+    DOMAIN,
+    CONF_WIND_UNIT,
+    CONF_TEMP_UNIT,
+    DEFAULT_WIND_UNIT,
+    DEFAULT_TEMP_UNIT,
+    CONF_STATION_IDS,
+)
 
 # Keep sensor type names and device class where applicable; units will be set per-entry
 SENSOR_TYPES = {
@@ -13,7 +20,8 @@ SENSOR_TYPES = {
 
 
 async def async_setup_entry(hass, entry, async_add_entities):
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    # coordinators is a dict station_id -> coordinator
+    coordinators = hass.data[DOMAIN][entry.entry_id]
     sensors = []
 
     # Get configured units for this entry (fallback to defaults)
@@ -23,20 +31,25 @@ async def async_setup_entry(hass, entry, async_add_entities):
     # Map temperature unit to display unit
     temp_display_unit = "°C" if tu == "C" else "°F"
 
-    # For wind sensors use su directly (API and display strings use same values like "m/s", "km/h", "knots", "mph")
-    wind_unit_display = su
+    # Build the list of stations (CONF_STATION_IDS is required)
+    stations = entry.data.get(CONF_STATION_IDS, [])
 
-    station_id = entry.data.get(CONF_STATION_ID)
+    for station in stations:
+        coordinator = coordinators.get(str(station))
+        if not coordinator:
+            continue
 
-    for key, (name, device_class) in SENSOR_TYPES.items():
-        if key == "temperature":
-            unit = temp_display_unit
-        elif key in ("wind_speed", "wind_gust", "wind_min"):
-            unit = wind_unit_display
-        else:
-            unit = None
+        for key, (name, device_class) in SENSOR_TYPES.items():
+            if key == "temperature":
+                unit = temp_display_unit
+            elif key in ("wind_speed", "wind_gust", "wind_min"):
+                unit = su
+            else:
+                unit = None
 
-        sensors.append(HolfuySensor(coordinator, key, name, unit, device_class, station_id))
+            sensors.append(
+                HolfuySensor(coordinator, key, name, unit, device_class, station)
+            )
 
     async_add_entities(sensors)
 
@@ -58,7 +71,7 @@ class HolfuySensor(CoordinatorEntity, SensorEntity):
 
     @property
     def name(self):
-        return f"Holfuy {self._name}"
+        return f"Holfuy {self._name} ({self._station_id})"
 
     @property
     def state(self):
@@ -87,7 +100,7 @@ class HolfuySensor(CoordinatorEntity, SensorEntity):
 
     @property
     def extra_state_attributes(self):
-        data = self.coordinator.data
+        data = self.coordinator.data or {}
         return {
             "station_name": data.get("stationName"),
             "last_update": data.get("dateTime"),
@@ -102,7 +115,7 @@ class HolfuySensor(CoordinatorEntity, SensorEntity):
         data = self.coordinator.data or {}
         station_name = data.get("stationName") or f"Holfuy {self._station_id}"
         return {
-            "identifiers": {(DOMAIN, self._station_id)},  # unique device identifier
+            "identifiers": {(DOMAIN, self._station_id)},  # unique device identifier per station
             "name": station_name,
             "manufacturer": "Holfuy",
             "model": "Weather Station",
