@@ -15,6 +15,7 @@ from .const import (
     DEFAULT_TEMP_UNIT,
     API_URL,
 )
+from . import repairs
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -215,6 +216,10 @@ class HolfuyOptionsFlow(config_entries.OptionsFlow):
 
             new_data = {**self._config_entry.data, **user_input, CONF_STATION_IDS: stations}
             self.hass.config_entries.async_update_entry(self._config_entry, data=new_data)
+            
+            # Clear repair issues on successful reconfiguration
+            await repairs.async_delete_all_issues(self.hass, self._config_entry.entry_id)
+            
             return self.async_create_entry(title="", data={})
 
         return self.async_show_form(step_id="init", data_schema=schema)
