@@ -56,7 +56,7 @@
     },
     "api_connection_failure": {
       "title": "Holfuy API Connection Issues",
-      "description": "Unable to connect to Holfuy API. Check your network connection."
+      "description": "Unable to connect to Holfuy API. The integration will retry automatically."
     },
     "invalid_response": {
       "title": "Holfuy API Response Format Error",
