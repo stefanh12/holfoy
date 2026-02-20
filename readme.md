@@ -1,4 +1,7 @@
 [![Validate with hassfest](https://github.com/stefanh12/holfuy/actions/workflows/hassfest.yaml/badge.svg)](https://github.com/stefanh12/holfuy/actions/workflows/hassfest.yaml)
+[![HACS Action](https://github.com/stefanh12/holfuy/actions/workflows/hacs-validate.yaml/badge.svg)](https://github.com/stefanh12/holfuy/actions/workflows/hacs-validate.yaml)
+[![Release](https://github.com/stefanh12/holfuy/actions/workflows/release.yaml/badge.svg)](https://github.com/stefanh12/holfuy/actions/workflows/release.yaml)
+[![Dependabot Updates](https://github.com/stefanh12/holfuy/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/stefanh12/holfuy/actions/workflows/dependabot/dependabot-updates)
 # Holfuy Weather Integration for Home Assistant
 
 This custom component integrates **Holfuy weather station data** into Home Assistant using the Holfuy API.
