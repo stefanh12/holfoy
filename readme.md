@@ -1,3 +1,4 @@
+[![Validate with hassfest](https://github.com/stefanh12/holfuy/actions/workflows/hassfest.yaml/badge.svg)](https://github.com/stefanh12/holfuy/actions/workflows/hassfest.yaml)
 # Holfuy Weather Integration for Home Assistant
 
 This custom component integrates **Holfuy weather station data** into Home Assistant using the Holfuy API.
