@@ -1,4 +1,5 @@
 # Basic lint workflow using ruff (fast). Helps show code quality and catches simple issues.
+name: HACS Lint
 on:
   pull_request:
     paths:
